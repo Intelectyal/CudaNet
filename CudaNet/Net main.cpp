@@ -4,5 +4,6 @@
 #include "kernel.h"
 void main()
 {
-	some();
+	setlocale(LC_ALL, "Rus");
+	CudaMain();
 }
