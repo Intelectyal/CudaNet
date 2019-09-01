@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include "CImg.h"
 #include "Image_to_Matrix.h"
 using namespace std;
@@ -81,26 +80,26 @@ void namefunc(char lastname[], int number)// Number номер картинки, котора€ буде
 		lastname[9] = '\0';
 	}
 }
-void matrix_fun(vector<vector<int>> &Matrix, int number_of_image)// ќткрывает картинку под номером %number_of_image% и записывает значение пиксел€ в %vector<vector<int>> Matrix%
+void imageMatrix(double Matrix[m_sizex][m_sizey], int number_of_image)// ќткрывает картинку под номером %number_of_image% и записывает значение пиксел€ в %vector<vector<int>> Matrix%
 {
 	char lastname[10];
 	namefunc(lastname, number_of_image);
 	CImg<unsigned char> img(lastname);
-	for (int i = 0; i < Matrix[0].size(); i++)
+	for (int i = 0; i < m_sizey; i++)
 	{
-		for (int k = 0; k < Matrix.size(); k++)
+		for (int k = 0; k < m_sizex; k++)
 		{
 			Matrix[i][k] = img(k, i, 0, 0);
 		}
 	}
 }
-void Console_out(vector<vector<int>> &Matrix, int number_of_image)
+void Console_out(double Matrix[m_sizex][m_sizey], int number_of_image)
 {
 	--number_of_image;
-	matrix_fun(Matrix, number_of_image);
-	for (int j = 0; j < Matrix[0].size(); j++)
+	imageMatrix(Matrix, number_of_image);
+	for (int j = 0; j < m_sizey; j++)
 	{
-		for (int k = 0; k < Matrix.size(); k++)
+		for (int k = 0; k < m_sizex; k++)
 		{
 			if (Matrix[j][k] == 0)
 			{
@@ -115,16 +114,16 @@ void Console_out(vector<vector<int>> &Matrix, int number_of_image)
 	}
 	cout << "----------------------------" << endl;
 }
-void Cimg_out(vector<vector<int>> &Matrix, int number_of_image)
+void Cimg_out(double Matrix[m_sizex][m_sizey], int number_of_image)
 {
 	--number_of_image;
-	matrix_fun(Matrix, number_of_image);
+	imageMatrix(Matrix, number_of_image);
 	char lastname[10];
 	namefunc(lastname, number_of_image);
 	CImg<unsigned char> img(lastname);
-	for (int j = 0; j < Matrix[0].size(); j++)
+	for (int j = 0; j < m_sizey; j++)
 	{
-		for (int k = 0; k < Matrix.size(); k++)
+		for (int k = 0; k < m_sizex; k++)
 		{
 			if (Matrix[j][k] == 0)
 			{
@@ -139,14 +138,14 @@ void Cimg_out(vector<vector<int>> &Matrix, int number_of_image)
 	}
 	img.display(lastname);
 }
-void Console_out_of_range(vector<vector<int>> &Matrix, int iterator)// ¬ыводит изображени€ в консоль, пока i<iterator
+void Console_out_of_range(double Matrix[m_sizex][m_sizey], int iterator)// ¬ыводит изображени€ в консоль, пока i<iterator
 {
 	for (int i = 0; i < iterator; i++)
 	{
-		matrix_fun(Matrix, i);
-		for (int j = 0; j < Matrix[0].size(); j++)
+		imageMatrix(Matrix, i);
+		for (int j = 0; j < m_sizey; j++)
 		{
-			for (int k = 0; k < Matrix.size(); k++)
+			for (int k = 0; k < m_sizex; k++)
 			{
 				if (Matrix[j][k] == 0)
 				{
@@ -162,17 +161,17 @@ void Console_out_of_range(vector<vector<int>> &Matrix, int iterator)// ¬ыводит и
 		cout << "----------------------------" << endl;
 	}
 }
-void Cimg_out_of_range(vector<vector<int>> &Matrix, int iterator)
+void Cimg_out_of_range(double Matrix[m_sizex][m_sizey], int iterator)
 {
 	for (int q = 0; q < iterator; q++)
 	{
-		matrix_fun(Matrix, q);
+		imageMatrix(Matrix, q);
 		char lastname[10];
 		namefunc(lastname, q);
 		CImg<unsigned char> img(lastname);
-		for (int j = 0; j < Matrix[0].size(); j++)
+		for (int j = 0; j < m_sizey; j++)
 		{
-			for (int k = 0; k < Matrix.size(); k++)
+			for (int k = 0; k < m_sizex; k++)
 			{
 				if (Matrix[j][k] == 0)
 				{
