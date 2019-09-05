@@ -24,4 +24,5 @@ void main()
 	imageMatrix(Matrix, 0);
 	kernelin(kernel);
 	same_conv(Matrix, Matrix2, kernel);
+	Cimg_out(Matrix, 2);
 }

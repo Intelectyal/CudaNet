@@ -1,10 +1,18 @@
 #include "kernel.h"
 #include <stdio.h>
 #include <cuda_runtime_api.h>
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
 #include <iostream>
 #include "Image_to_Matrix.h"
 using namespace std;
 
+__global__ void same(double* dev_matrix1,double* dev_kernel,double*dev_matrix2)
+{
+	int idx = threadIdx.x;
+	int idy = threadIdx.y;
+	int idz = threadIdx.z;
+}
 
  __host__ void same_conv(double Matrix[m_sizex][m_sizey],double Matrix2[m_sizex][m_sizey][sizez], double kernel[k_sizex][k_sizey][sizez])
 {
@@ -27,6 +35,7 @@ using namespace std;
 			 }
 		 }
 	 }
+
 	 double* dev_matrix1;//указатель на память видеокарте матрица 1
 	 double* dev_kernel;//указатель на память видеокарте  ядро
 	 double* dev_matrix2;//указатель на память видеокарте  матрица 2
@@ -36,6 +45,8 @@ using namespace std;
 	 cudaMemcpy(dev_matrix1, matrixline, sizeof(double) * m_sizex*m_sizey, cudaMemcpyHostToDevice);//Копируем данные в память видеокарты
 	 cudaMemcpy(dev_kernel, kernelline, sizeof(double) * k_sizex*k_sizey*sizez, cudaMemcpyHostToDevice);//Копируем данные в память видеокарты
 
+	
+	 /* 28*28->32*32 боковые=0 */
 }
 
 
